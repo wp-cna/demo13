@@ -53,7 +53,7 @@ curl -X POST "https://YOUR-VERCEL-APP.vercel.app/api/posting-review" \
     "linksIncluded": "No",
     "description": "A neighborhood block party for Fisher Hill residents with informal family activities and a chance to meet neighbors.",
     "guidelinesConfirmed": "yes",
-    "pageSource": "/demo10/posting/"
+    "pageSource": "/demo11/posting/"
   }'
 ```
 
@@ -71,8 +71,8 @@ Expected browser response:
 For the GitHub Pages demo build, set:
 
 - `SITE_BASE_URL=https://wp-cna.github.io`
-- `SITE_PATH_PREFIX=/demo10`
-- `CANONICAL_PATH_PREFIX=/demo10`
+- `SITE_PATH_PREFIX=/demo11`
+- `CANONICAL_PATH_PREFIX=/demo11`
 - repository variable `POSTING_API_URL` to the deployed Vercel function URL
 
 This advisory phase intentionally leaves auto-publishing disabled.
