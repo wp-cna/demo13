@@ -323,6 +323,7 @@ if (postingForm) {
       const apiUrl = postingForm.dataset.postingApi;
 
       if (!apiUrl) {
+        console.error("[WPCNA] Missing posting API URL. Set POSTING_API_URL for this deployment.");
         throw new Error("Missing posting API URL");
       }
 
@@ -342,9 +343,11 @@ if (postingForm) {
         postingForm.reset();
         updateCount();
       } else {
+        console.error("[WPCNA] Posting API returned an error.", { status: res.status, data });
         showStatus(data.error || "Something went wrong. Please try again.", true);
       }
-    } catch {
+    } catch (error) {
+      console.error("[WPCNA] Community posting submission failed.", error);
       showStatus("Could not reach the server. Please try again later.", true);
     }
 

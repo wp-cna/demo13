@@ -1,4 +1,4 @@
-name = "wpcna-demo3-posting-review"
+name = "wpcna-demo12-posting-review"
 main = "src/posting-worker.js"
 compatibility_date = "2026-04-21"
 
