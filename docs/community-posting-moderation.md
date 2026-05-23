@@ -1,12 +1,18 @@
 # Community Posting Review Endpoint
 
-This demo runs in advisory review mode. The Community Posting form sends structured intake data to a private Cloudflare Worker, which performs deterministic guideline checks, sends a private audit email, and returns a neutral confirmation to the browser.
+The Community Posting form sends structured intake data to a private Cloudflare
+Worker. The Worker runs deterministic guideline checks, then asks Anthropic to
+vet the submission against the WPCNA posting guidelines, sends a private audit
+email to WPCNA, and returns a neutral confirmation to the browser.
 
-It does not auto-publish, auto-approve, auto-reject, or create public posting pages.
+This is advisory review only. It does not auto-publish, auto-approve,
+auto-reject, or create public posting pages. A WPCNA person makes the final
+call from the audit email.
 
 ## Runtime
 
-The Worker entrypoint is `worker/src/posting-worker.js`, with review logic in `worker/src/posting-review.js`.
+The Worker entrypoint is `worker/src/posting-worker.js`, with rule-based review
+in `worker/src/posting-review.js` and the AI vetting in `worker/src/anthropic.js`.
 
 Supported routes:
 
@@ -14,50 +20,78 @@ Supported routes:
 - `/posting-review`
 - `/api/posting-review`
 
-The static site receives the deployed Worker URL through the `POSTING_API_URL` build variable.
+The static site receives the deployed Worker URL through the `POSTING_API_URL`
+build variable.
 
 ## Private Worker Configuration
 
 Set secrets with `wrangler secret put`; do not commit real values.
 
-Preferred email path:
+AI vetting (required for the AI recommendation):
+
+- `ANTHROPIC_API_KEY` — the WPCNA owner's Anthropic key. Never appears in public
+  HTML or frontend JavaScript.
+
+Email delivery — preferred path:
 
 - `RESEND_API_KEY`
 - `POSTING_EMAIL_FROM`
 - `POSTING_RECIPIENT_EMAILS`
 
-Fallback webhook path:
+Email delivery — fallback webhook path:
 
 - `POSTING_EMAIL_WEBHOOK_URL`
 - `POSTING_CC_EMAILS`
 
-Some browser-oriented form services challenge server-side Worker requests. If the Worker returns an email handoff error, use the Resend path with a verified sender instead of FormSubmit.
-
 Worker vars:
 
 - `ALLOWED_ORIGINS=https://wp-cna.github.io`
+- `POSTING_REVIEW_MODEL` (optional) — defaults to `claude-sonnet-4-6`.
+  Set to `claude-haiku-4-5-20251001` to cut cost if volume ever grows.
 
-No recipient email addresses, API keys, or webhook URLs should appear in public HTML or frontend JavaScript.
+No recipient email addresses, API keys, or webhook URLs should appear in public
+HTML or frontend JavaScript.
 
 ## Flow
 
 1. The resident submits the Community Posting intake form.
 2. The frontend sends structured JSON to `POSTING_API_URL`.
-3. The Worker validates required fields, email format, field lengths, honeypot state, and rate limits.
-4. The Worker runs rule-based civic posting review.
-5. The Worker emails a scannable audit report with the original submission, recommendation, triggered flags, missing information, checklist, and cleaned-up draft summary when appropriate.
-6. The browser receives only a neutral confirmation message.
+3. The Worker validates required fields, email format, field lengths, honeypot
+   state, and rate limits.
+4. The Worker runs deterministic rule-based pre-checks (local relevance,
+   community-serving signals, missing event details, spam/outside/escalation
+   patterns).
+5. The Worker calls Anthropic to vet the submission against the WPCNA
+   guidelines and return a structured recommendation. The deterministic signals
+   are passed to the model as advisory context.
+6. The Worker emails a scannable audit report: the AI recommendation and reason
+   first, then the original submission, deterministic checks, missing
+   information, guideline checklist, and a cleaned-up draft summary when
+   appropriate.
+7. The browser receives only a neutral confirmation message.
+
+If the Anthropic call fails for any reason, the submission is still emailed to
+WPCNA with an "AI vetting unavailable — review manually" note. Nothing is lost.
 
 ## Recommendations
 
-The rule-based review can return:
+The AI vetting returns one of three buckets, matching the public guidelines:
 
-- `READY FOR HUMAN REVIEW`
-- `NEEDS MORE INFORMATION`
-- `LIKELY OUTSIDE GUIDELINES`
-- `ESCALATE TO HUMAN`
+- `READY_TO_POST` — clearly local, community-serving, on-topic, and complete
+  enough to post with little or no edits.
+- `NEEDS_REVIEW` — plausibly appropriate but missing details, ambiguous,
+  borderline, or sensitive enough to warrant a close human look.
+- `NOT_QUALIFIED` — clearly outside the guidelines (commercial, classifieds,
+  unrelated to White Plains, spam, etc.).
 
-The recommendation is advisory only.
+A separate `escalate` flag rides alongside the bucket for content that is
+defamatory, accusatory, political-campaign, legal, medical, emergency/safety,
+discriminatory, or threatening — those should always get careful human handling.
+The recommendation is advisory only; it never publishes or replies to the
+submitter.
+
+The audit email subject is tagged `[READY TO POST]`, `[NEEDS REVIEW]`,
+`[NOT QUALIFIED]`, or `[ESCALATE]` so WPCNA can triage at a glance.
 
 ## Test Curl
 
@@ -72,7 +106,7 @@ curl -i -X POST "https://YOUR-WORKER.workers.dev/posting-review" \
     "email": "sarah@example.com",
     "subject": "Battle Hill Block Cleanup",
     "category": "Volunteer / Cleanup",
-    "postingType": "Event",
+    "postingType": "Volunteer opportunity",
     "organization": "Battle Hill Neighborhood Association",
     "eventDate": "2026-06-14",
     "eventTime": "09:00",
@@ -105,4 +139,16 @@ For the GitHub Pages demo build, set:
 - `CANONICAL_PATH_PREFIX=/demo12`
 - repository variable `POSTING_API_URL` to the deployed Worker `/posting-review` URL
 
-The deploy workflow fails if `POSTING_API_URL` is missing so the live form cannot silently ship with an empty backend endpoint.
+On the Worker side, set the `ANTHROPIC_API_KEY` secret (and email secrets)
+before deploying so vetting is live:
+
+```bash
+cd worker
+npx wrangler secret put ANTHROPIC_API_KEY
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put POSTING_RECIPIENT_EMAILS
+npm run deploy
+```
+
+The deploy workflow fails if `POSTING_API_URL` is missing so the live form
+cannot silently ship with an empty backend endpoint.

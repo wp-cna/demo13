@@ -1,3 +1,5 @@
+import { reviewPostingWithAnthropic } from "./anthropic.js";
+
 const POSTING_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const POSTING_RATE_LIMIT_MAX = 5;
 const POSTING_MAX_LENGTHS = {
@@ -523,8 +525,51 @@ function formatOriginalSubmission(raw = {}) {
   ].join("\n");
 }
 
-function formatEmailBody({ review, rawSubmission, timestamp, request }) {
+const AI_RECOMMENDATION_LABELS = {
+  READY_TO_POST: "READY TO POST",
+  NEEDS_REVIEW: "NEEDS REVIEW",
+  NOT_QUALIFIED: "NOT QUALIFIED"
+};
+
+const AI_CHECKLIST_LABELS = CHECKLIST_LABELS;
+
+function aiRecommendationLabel(recommendation = "") {
+  return AI_RECOMMENDATION_LABELS[recommendation] || "NEEDS REVIEW";
+}
+
+function formatAiReviewSection(aiReview) {
+  if (!aiReview) {
+    return [
+      "AI VETTING (ANTHROPIC)",
+      "AI vetting was unavailable for this submission; please review it manually."
+    ];
+  }
+
+  const confidencePct = `${Math.round((Number(aiReview.confidence) || 0) * 100)}%`;
+  const lines = [
+    "AI VETTING (ANTHROPIC)",
+    `Recommendation: ${aiRecommendationLabel(aiReview.recommendation)}`,
+    `Escalate to a person: ${aiReview.escalate ? "YES" : "No"}`,
+    `Confidence: ${confidencePct}`,
+    `Reason: ${safeEmailText(aiReview.reason, 900) || "Not provided"}`,
+    "Missing information:",
+    formatList(aiReview.missingInformation),
+    `Suggested follow-up: ${safeEmailText(aiReview.suggestedFollowUp, 600) || "None suggested."}`,
+    "AI guideline checklist:",
+    formatGuidelineChecklist(aiReview.checklist)
+  ];
+
+  if (aiReview.cleanedUpDraftSummary) {
+    lines.push("AI cleaned-up draft summary:", safeEmailText(aiReview.cleanedUpDraftSummary, 600));
+  }
+
+  return lines;
+}
+
+function formatEmailBody({ review, aiReview, rawSubmission, timestamp, request }) {
   const sections = [
+    ...formatAiReviewSection(aiReview),
+    "",
     "CIVIC INTAKE SUMMARY",
     formatCivicIntakeSummary(rawSubmission),
     "",
@@ -563,9 +608,15 @@ function formatEmailBody({ review, rawSubmission, timestamp, request }) {
   return sections.join("\n");
 }
 
-function emailSubject(subject = "") {
+function emailSubject(subject = "", aiReview = null) {
   const cleanSubject = normalizeText(subject, 120) || "Untitled submission";
-  return `Community Posting Review: ${cleanSubject}`;
+  let tag = "";
+  if (aiReview) {
+    tag = aiReview.escalate
+      ? "[ESCALATE] "
+      : `[${aiRecommendationLabel(aiReview.recommendation)}] `;
+  }
+  return `${tag}Community Posting Review: ${cleanSubject}`;
 }
 
 function parseEmailList(value = "") {
@@ -696,10 +747,19 @@ export async function handlePostingSubmission({ request, env, corsHeaders, jsonR
 
   const review = reviewPostingSubmission(clean);
 
+  let aiReview = null;
+  try {
+    aiReview = await reviewPostingWithAnthropic({ env, submission: clean, ruleReview: review });
+  } catch (error) {
+    console.error("Anthropic posting vetting error:", error);
+    aiReview = null;
+  }
+
   const timestamp = new Date().toISOString();
-  const subject = emailSubject(clean.subject);
+  const subject = emailSubject(clean.subject, aiReview);
   const body = formatEmailBody({
     review,
+    aiReview,
     rawSubmission: raw,
     timestamp,
     request

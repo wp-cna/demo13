@@ -3,6 +3,7 @@ main = "src/posting-worker.js"
 compatibility_date = "2026-04-21"
 
 # Secrets (set with `wrangler secret put`):
+#   ANTHROPIC_API_KEY        <- WPCNA owner's Anthropic key; powers posting vetting
 #   POSTING_RECIPIENT_EMAILS
 #   POSTING_EMAIL_WEBHOOK_URL
 #   POSTING_CC_EMAILS
@@ -12,3 +13,7 @@ compatibility_date = "2026-04-21"
 
 [vars]
 ALLOWED_ORIGINS = "https://wp-cna.github.io"
+# Model used to vet Community Posting submissions. Default in code is
+# claude-sonnet-4-6. Set to claude-haiku-4-5-20251001 to cut cost if volume
+# ever grows.
+# POSTING_REVIEW_MODEL = "claude-sonnet-4-6"
