@@ -1,7 +1,9 @@
-const neighborhoods = require("./neighborhoods");
+const neighborhoods = require("./neighborhoods.json").neighborhoods;
 const neighborhoodHeroes = require("./neighborhood-heroes.json");
 const featuredNeighborhoodMap = require("./featuredNeighborhoodMap");
 const { createPlaceholderHero, createProvidedHero } = require("./neighborhoodHeroHelpers");
+const neighborhoodOverlay = require("./neighborhoods.json").neighborhoods;
+const overlayBySlug = Object.fromEntries(neighborhoodOverlay.map((n) => [n.slug, n]));
 
 const mapRegionBySlug = new Map(
   (featuredNeighborhoodMap.allRegions || []).map((region) => [region.slug, region])
@@ -146,21 +148,23 @@ const resourceLinksBySlug = {
 };
 
 const baseNeighborhoods = neighborhoods.map((item, index) => {
+  const ov = overlayBySlug[item.slug] || {};
+  const description = (ov.description && String(ov.description).trim()) || item.description;
   const groupSlug = toKebab(item.group);
   const detailUrl = `/neighborhoods/${item.slug}/`;
   const mapRegion = mapRegionBySlug.get(item.slug) || null;
-  const sentences = splitSentences(item.description);
+  const sentences = splitSentences(description);
   const words = item.name.match(/[A-Z0-9][a-z0-9]*/g) || item.name.split(/\s+/);
   const initials = words
     .slice(0, 2)
     .map((word) => word[0])
     .join("")
     .toUpperCase();
-  const referencePoints = extractReferencePoints(item.description).filter(
+  const referencePoints = extractReferencePoints(description).filter(
     (phrase) => phrase.toLowerCase() !== item.name.toLowerCase()
   );
   const cardContext = referencePoints.slice(0, 2).join(" • ");
-  const detailParagraphs = sentences.length > 1 ? sentences.slice(1) : [item.description];
+  const detailParagraphs = sentences.length > 1 ? sentences.slice(1) : [description];
 
   return {
     ...item,
@@ -182,7 +186,27 @@ const baseNeighborhoods = neighborhoods.map((item, index) => {
     metaDescription: `Learn about ${item.name}, part of ${item.group}.`,
     initials,
     referencePoints,
-    cardContext
+    cardContext,
+    description,
+    published: ov.published === true,
+    association:
+      ov.association && (ov.association.name || (ov.association.officers || []).length)
+        ? ov.association
+        : null,
+    editableHero:
+      ov.image && ov.image.src
+        ? {
+            imagePath: ov.image.src,
+            cardImagePath: ov.image.src,
+            altText: ov.image.alt || "",
+            cardAltText: ov.image.alt || "",
+            attributionText: ov.image.credit || "",
+            attributionUrl: ov.image.sourceUrl || "",
+            sourceUrl: ov.image.sourceUrl || "",
+            license: ov.image.license || "",
+            status: "photo"
+          }
+        : null
   };
 });
 
@@ -206,7 +230,7 @@ baseNeighborhoods.forEach((neighborhood) => {
 });
 
 const all = baseNeighborhoods.map((neighborhood) => {
-  const isFisherHill = neighborhood.slug === "fisher-hill";
+  const isFisherHill = neighborhood.published === true;
   const group = groupMap.get(neighborhood.group);
   const relatedNeighborhoods = group.neighborhoods
     .filter((candidate) => candidate.slug !== neighborhood.slug)
@@ -221,7 +245,7 @@ const all = baseNeighborhoods.map((neighborhood) => {
     displayDetailParagraphs: isFisherHill
       ? neighborhood.detailParagraphs
       : [guideDescriptionPlaceholder],
-    displayHero: isFisherHill ? neighborhood.hero : null,
+    displayHero: isFisherHill ? (neighborhood.editableHero || neighborhood.hero) : null,
     displayMetaDescription: isFisherHill
       ? neighborhood.metaDescription
       : `${neighborhood.name} profile coming soon.`,

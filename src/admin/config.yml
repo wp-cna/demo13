@@ -139,3 +139,50 @@ collections:
           - { name: handbookHeroImageAlt, label: "Join the CNA banner alt text", widget: string, required: false }
           - { name: postingHeroImage, label: "Community Postings banner image", widget: image, required: false }
           - { name: postingHeroImageAlt, label: "Community Postings banner alt text", widget: string, required: false }
+
+  - name: neighborhoods
+    label: "Neighborhoods"
+    files:
+      - name: neighborhoods
+        label: "Neighborhoods list"
+        file: "src/_data/neighborhoods.json"
+        fields:
+          - name: neighborhoods
+            label: "Neighborhoods"
+            label_singular: "Neighborhood"
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: slug, label: "Slug (do not change)", widget: string }
+              - { name: name, label: "Name", widget: string }
+              - { name: group, label: "Group", widget: string }
+              - { name: published, label: "Published (show on the site)", widget: boolean, default: false }
+              - { name: description, label: "Description", widget: text, required: false }
+              - name: association
+                label: "Neighborhood association"
+                widget: object
+                required: false
+                fields:
+                  - { name: name, label: "Association name", widget: string, required: false }
+                  - { name: url, label: "Association website URL", widget: string, required: false }
+                  - name: officers
+                    label: "Officers"
+                    label_singular: "Officer"
+                    widget: list
+                    required: false
+                    summary: "{{fields.role}}: {{fields.name}}"
+                    fields:
+                      - { name: name, label: "Name", widget: string }
+                      - { name: role, label: "Role", widget: string }
+                      - { name: phone, label: "Phone", widget: string, required: false }
+                      - { name: email, label: "Email", widget: string, required: false }
+              - name: image
+                label: "Photo (thumbnail + page hero)"
+                widget: object
+                required: false
+                fields:
+                  - { name: src, label: "Image", widget: image, required: false }
+                  - { name: alt, label: "Alt text", widget: string, required: false }
+                  - { name: credit, label: "Credit / photographer", widget: string, required: false }
+                  - { name: sourceUrl, label: "Source URL", widget: string, required: false }
+                  - { name: license, label: "License", widget: string, required: false }

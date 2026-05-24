@@ -51,9 +51,15 @@ eleventyComputed:
                 {% if officer.phone %}
                   <a href="tel:{{ officer.phone | replace('-', '') }}">{{ officer.phone }}</a>
                 {% endif %}
+                {% if officer.email %}
+                  <a href="mailto:{{ officer.email }}">{{ officer.email }}</a>
+                {% endif %}
               </li>
             {% endfor %}
           </ul>
+          {% if neighborhood.association.url %}
+            <p class="association-website"><a href="{{ neighborhood.association.url }}" rel="external noopener">Visit the association website</a></p>
+          {% endif %}
         </div>
       {% endif %}
     </article>

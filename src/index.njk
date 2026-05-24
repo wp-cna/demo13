@@ -143,6 +143,9 @@ metaDescription: The neighborhood-centered civic hub for agendas, events, repres
                     </li>
                   {% endfor %}
                 </ul>
+                {% if neighborhood.association.url %}
+                  <p class="association-website"><a href="{{ neighborhood.association.url }}" rel="external noopener">Association website</a></p>
+                {% endif %}
               </div>
             {% endif %}
 
