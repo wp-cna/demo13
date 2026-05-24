@@ -571,7 +571,9 @@ function formatEmailBody({ review, aiReview, approveUrl, rawSubmission, timestam
   const sections = [
     ...formatAiReviewSection(aiReview),
     ...(approveUrl
-      ? ["", "APPROVE & PUBLISH (one click)", approveUrl, "Clicking the link above publishes this posting to the site right away."]
+      ? (aiReview && aiReview.recommendation === "NEEDS_REVIEW"
+          ? ["", "PUBLISH AS-IS (one click) - review the missing items above first", approveUrl, "Clicking this publishes the posting to the site as-is. Address any gaps above first if needed."]
+          : ["", "APPROVE & PUBLISH (one click)", approveUrl, "Clicking the link above publishes this posting to the site right away."])
       : []),
     "",
     "CIVIC INTAKE SUMMARY",
@@ -761,7 +763,7 @@ export async function handlePostingSubmission({ request, env, corsHeaders, jsonR
 
   let approveUrl = null;
   try {
-    if (aiReview && aiReview.recommendation === "READY_TO_POST" && !aiReview.escalate && env.APPROVE_SIGNING_SECRET) {
+    if (aiReview && !aiReview.escalate && ["READY_TO_POST", "NEEDS_REVIEW"].includes(aiReview.recommendation) && env.APPROVE_SIGNING_SECRET) {
       const posting = postingFromSubmission(clean, aiReview);
       const token = await signPosting(posting, env.APPROVE_SIGNING_SECRET);
       approveUrl = `${new URL(request.url).origin}/publish?token=${token}`;
