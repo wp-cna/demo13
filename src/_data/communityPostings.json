@@ -103,5 +103,20 @@
     "locationAddress": "",
     "shortSummary": "Battle Hill Neighborhood Association is hosting a volunteer Spring Cleanup Walk at Battle Hill Park on Sunday, June 14, 2026 at 9:00 AM — gloves and bags provided. All residents and families welcome.",
     "fullDescription": "The Battle Hill neighborhood association is organizing a volunteer cleanup morning at Battle Hill Park in White Plains for residents and families. Gloves and bags provided. Come help tidy up the park ahead of summer."
+  },
+  {
+    "slug": "charity-soccer-tournament-at-white-plains-high-school-2026-06-13",
+    "category": "Other",
+    "sourceLabel": "Kick for a Kure",
+    "status": "upcoming",
+    "title": "Charity soccer tournament at White Plains High School",
+    "startDate": "2026-06-13",
+    "startTime": "09:30",
+    "endTime": "",
+    "displayTime": "09:30",
+    "locationName": "White Plains High School",
+    "locationAddress": "",
+    "shortSummary": "Charity all-day soccer tournament hosted by Kick for a Kure at White Plains High School on June 13, 2026 (round robin begins at 10 AM), raising money for cancer research — $100 donation per team to enter.",
+    "fullDescription": "All day soccer tournament to raise money for cancer research through the nonprofit \"Kick for a Kure.\" $100 donation per team for entry. Round robin will begin at 10am, and continue all day until a champion is crowned."
   }
 ]
