@@ -1,19 +1,18 @@
-name = "wpcna-demo12-posting-review"
+name = "wpcna-demo13-posting-review"
 main = "src/posting-worker.js"
 compatibility_date = "2026-04-21"
 
 # Secrets (set with `wrangler secret put`):
-#   ANTHROPIC_API_KEY        <- WPCNA owner's Anthropic key; powers posting vetting
-#   POSTING_RECIPIENT_EMAILS
-#   POSTING_EMAIL_WEBHOOK_URL
-#   POSTING_CC_EMAILS
-# Optional email-provider secrets:
-#   RESEND_API_KEY
-#   POSTING_EMAIL_FROM
+#   ANTHROPIC_API_KEY        <- powers AI vetting
+#   RESEND_API_KEY           <- email delivery
+#   POSTING_RECIPIENT_EMAILS <- who gets the vetting reports
+#   GITHUB_TOKEN             <- fine-grained token, Contents:write on GITHUB_REPO (one-click publish)
+#   APPROVE_SIGNING_SECRET   <- random string; signs the Approve & Publish links
 
 [vars]
 ALLOWED_ORIGINS = "https://wp-cna.github.io"
-# Model used to vet Community Posting submissions. Default in code is
-# claude-sonnet-4-6. Set to claude-haiku-4-5-20251001 to cut cost if volume
-# ever grows.
+GITHUB_REPO = "wp-cna/demo13"
+GITHUB_BRANCH = "main"
+POSTINGS_PATH = "src/_data/communityPostings.json"
+# Vetting model (default in code is claude-sonnet-4-6).
 # POSTING_REVIEW_MODEL = "claude-sonnet-4-6"

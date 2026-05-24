@@ -1,4 +1,5 @@
 import { reviewPostingWithAnthropic } from "./anthropic.js";
+import { signPosting, postingFromSubmission } from "./publish.js";
 
 const POSTING_RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const POSTING_RATE_LIMIT_MAX = 5;
@@ -566,9 +567,12 @@ function formatAiReviewSection(aiReview) {
   return lines;
 }
 
-function formatEmailBody({ review, aiReview, rawSubmission, timestamp, request }) {
+function formatEmailBody({ review, aiReview, approveUrl, rawSubmission, timestamp, request }) {
   const sections = [
     ...formatAiReviewSection(aiReview),
+    ...(approveUrl
+      ? ["", "APPROVE & PUBLISH (one click)", approveUrl, "Clicking the link above publishes this posting to the site right away."]
+      : []),
     "",
     "CIVIC INTAKE SUMMARY",
     formatCivicIntakeSummary(rawSubmission),
@@ -755,11 +759,23 @@ export async function handlePostingSubmission({ request, env, corsHeaders, jsonR
     aiReview = null;
   }
 
+  let approveUrl = null;
+  try {
+    if (aiReview && aiReview.recommendation === "READY_TO_POST" && !aiReview.escalate && env.APPROVE_SIGNING_SECRET) {
+      const posting = postingFromSubmission(clean, aiReview);
+      const token = await signPosting(posting, env.APPROVE_SIGNING_SECRET);
+      approveUrl = `${new URL(request.url).origin}/publish?token=${token}`;
+    }
+  } catch (error) {
+    console.error("Approve-link build failed:", error);
+  }
+
   const timestamp = new Date().toISOString();
   const subject = emailSubject(clean.subject, aiReview);
   const body = formatEmailBody({
     review,
     aiReview,
+    approveUrl,
     rawSubmission: raw,
     timestamp,
     request

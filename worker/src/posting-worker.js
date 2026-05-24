@@ -1,4 +1,5 @@
 import { handlePostingSubmission } from "./posting-review.js";
+import { handlePublish } from "./publish.js";
 
 const DEFAULT_ALLOWED_ORIGINS = ["https://wp-cna.github.io"];
 
@@ -67,6 +68,10 @@ export default {
         200,
         corsHeaders || {}
       );
+    }
+
+    if (request.method === "GET" && url.pathname === "/publish") {
+      return handlePublish({ request, env });
     }
 
     if (url.pathname === "/posting-review" || url.pathname === "/api/posting-review") {
