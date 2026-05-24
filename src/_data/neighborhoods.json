@@ -1,25 +1,6 @@
 {
   "neighborhoods": [
     {
-      "slug": "downtown",
-      "name": "Downtown",
-      "group": "Central White Plains",
-      "published": false,
-      "description": "Downtown is the most walkable and built-up part of White Plains, centered on the Metro-North station, Mamaroneck Avenue, restaurants, shopping, and a growing collection of newer apartment buildings. It has the most day-to-night energy in the city and the strongest sense of White Plains as a compact urban center.",
-      "association": {
-        "name": "",
-        "url": "",
-        "officers": []
-      },
-      "image": {
-        "src": "/assets/img/neighborhoods/wp-downtown-street.jpg",
-        "alt": "Street-level view of Downtown White Plains with storefronts, mid-rise buildings, and active sidewalks.",
-        "credit": "Paul Sableman via Wikimedia Commons",
-        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Downtown_White_Plains,_NY_2010-05-20.jpg",
-        "license": "CC BY 2.0"
-      }
-    },
-    {
       "slug": "church-street",
       "name": "Church Street",
       "group": "Central White Plains",
@@ -35,6 +16,25 @@
         "alt": "View along Dr. Martin Luther King Drive in White Plains with the public library in the foreground and civic buildings beyond.",
         "credit": "Paul Sableman via Wikimedia Commons",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dr._Martin_Luther_King_Drive_-_White_Plains,_NY_and_the_White_Plains_Library.jpg",
+        "license": "CC BY 2.0"
+      }
+    },
+    {
+      "slug": "downtown",
+      "name": "Downtown",
+      "group": "Central White Plains",
+      "published": false,
+      "description": "Downtown is the most walkable and built-up part of White Plains, centered on the Metro-North station, Mamaroneck Avenue, restaurants, shopping, and a growing collection of newer apartment buildings. It has the most day-to-night energy in the city and the strongest sense of White Plains as a compact urban center.",
+      "association": {
+        "name": "",
+        "url": "",
+        "officers": []
+      },
+      "image": {
+        "src": "/assets/img/neighborhoods/wp-downtown-street.jpg",
+        "alt": "Street-level view of Downtown White Plains with storefronts, mid-rise buildings, and active sidewalks.",
+        "credit": "Paul Sableman via Wikimedia Commons",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Downtown_White_Plains,_NY_2010-05-20.jpg",
         "license": "CC BY 2.0"
       }
     },
@@ -123,7 +123,14 @@
       "association": {
         "name": "",
         "url": "",
-        "officers": []
+        "officers": [
+          {
+            "name": "John",
+            "role": "President",
+            "phone": "555-555-5555",
+            "email": "john@example.com"
+          }
+        ]
       },
       "image": {
         "src": "/assets/img/neighborhoods/wp-battle-hill-marker.jpg",
