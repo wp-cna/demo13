@@ -2,10 +2,10 @@
   "postings": [
     {
       "slug": "fisher-hill-spring-cleanup-walk",
+      "title": "Fisher Hill Spring Cleanup Walk",
       "category": "Neighborhood",
       "sourceLabel": "Fisher Hill Neighborhood Association",
       "status": "upcoming",
-      "title": "Fisher Hill Spring Cleanup Walk",
       "startDate": "2026-05-17",
       "startTime": "09:00",
       "endTime": "11:30",
@@ -17,10 +17,10 @@
     },
     {
       "slug": "highlands-rain-garden-workshop",
+      "title": "Highlands Rain Garden Workshop",
       "category": "Workshop",
       "sourceLabel": "Highlands Neighborhood Association",
       "status": "upcoming",
-      "title": "Highlands Rain Garden Workshop",
       "startDate": "2026-05-21",
       "startTime": "18:30",
       "endTime": "20:00",
@@ -32,10 +32,10 @@
     },
     {
       "slug": "white-plains-emergency-preparedness-night",
+      "title": "White Plains Emergency Preparedness Night",
       "category": "Civic",
       "sourceLabel": "City of White Plains",
       "status": "upcoming",
-      "title": "White Plains Emergency Preparedness Night",
       "startDate": "2026-05-28",
       "startTime": "19:00",
       "endTime": "20:30",
@@ -47,10 +47,10 @@
     },
     {
       "slug": "gedney-farms-historic-homes-tour",
+      "title": "Gedney Farms Historic Homes Walking Tour",
       "category": "History",
       "sourceLabel": "Gedney Farms Preservation Committee",
       "status": "upcoming",
-      "title": "Gedney Farms Historic Homes Walking Tour",
       "startDate": "2026-06-02",
       "startTime": "17:30",
       "endTime": "19:00",
@@ -62,10 +62,10 @@
     },
     {
       "slug": "north-street-community-picnic",
+      "title": "North Street Community Picnic & Music Evening",
       "category": "Music & Family",
       "sourceLabel": "North Street Civic Association",
       "status": "upcoming",
-      "title": "North Street Community Picnic & Music Evening",
       "startDate": "2026-06-06",
       "startTime": "16:00",
       "endTime": "19:00",
@@ -77,10 +77,10 @@
     },
     {
       "slug": "safe-streets-bicycle-visibility-clinic",
+      "title": "Safe Streets Bicycle Visibility Clinic",
       "category": "Learning",
       "sourceLabel": "White Plains Safe Streets Coalition",
       "status": "upcoming",
-      "title": "Safe Streets Bicycle Visibility Clinic",
       "startDate": "2026-06-12",
       "startTime": "17:00",
       "endTime": "18:30",
@@ -92,10 +92,10 @@
     },
     {
       "slug": "battle-hill-spring-cleanup-walk-2026-06-14",
+      "title": "Battle Hill Spring Cleanup Walk",
       "category": "Volunteer / Cleanup",
       "sourceLabel": "Battle Hill Neighborhood Association",
       "status": "upcoming",
-      "title": "Battle Hill Spring Cleanup Walk",
       "startDate": "2026-06-14",
       "startTime": "09:00",
       "endTime": "",
@@ -107,10 +107,10 @@
     },
     {
       "slug": "charity-soccer-tournament-at-white-plains-high-school-2026-06-13",
+      "title": "Charity soccer tournament at White Plains High School",
       "category": "Other",
       "sourceLabel": "Kick for a Kure",
       "status": "upcoming",
-      "title": "Charity soccer tournament at White Plains High School",
       "startDate": "2026-06-13",
       "startTime": "09:30",
       "endTime": "",
@@ -119,6 +119,21 @@
       "locationAddress": "",
       "shortSummary": "Charity all-day soccer tournament hosted by Kick for a Kure at White Plains High School on June 13, 2026 (round robin begins at 10 AM), raising money for cancer research — $100 donation per team to enter.",
       "fullDescription": "All day soccer tournament to raise money for cancer research through the nonprofit \"Kick for a Kure.\" $100 donation per team for entry. Round robin will begin at 10am, and continue all day until a champion is crowned."
+    },
+    {
+      "slug": "test",
+      "title": "test",
+      "category": "test",
+      "sourceLabel": "test",
+      "status": "upcoming",
+      "startDate": "2026-09-01",
+      "startTime": "9 am",
+      "endTime": "4 pm",
+      "displayTime": "9a-4p",
+      "locationName": "test",
+      "locationAddress": "1 test st.",
+      "shortSummary": "testing testing",
+      "fullDescription": "this is a test"
     }
   ]
 }
