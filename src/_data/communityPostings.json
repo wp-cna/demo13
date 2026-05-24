@@ -76,21 +76,6 @@
       "fullDescription": "Residents and families are invited to gather for a relaxed community evening featuring acoustic music performances and outdoor picnic seating.\n\nThe event is intended as a casual neighborhood gathering and will include open lawn space for children and families.\n\nAttendees are encouraged to bring blankets or folding chairs."
     },
     {
-      "slug": "safe-streets-bicycle-visibility-clinic",
-      "title": "Safe Streets Bicycle Visibility Clinic",
-      "category": "Learning",
-      "sourceLabel": "White Plains Safe Streets Coalition",
-      "status": "upcoming",
-      "startDate": "2026-06-12",
-      "startTime": "17:00",
-      "endTime": "18:30",
-      "displayTime": "5:00 PM - 6:30 PM",
-      "locationName": "Ebersole Ice Rink Parking Area",
-      "locationAddress": "110 Lake Street, White Plains, NY 10604",
-      "shortSummary": "Volunteers will provide free bicycle light installation, helmet fitting guidance, and visibility tips for riders.",
-      "fullDescription": "The Safe Streets Bicycle Visibility Clinic offers residents practical bicycle safety guidance ahead of the summer season.\n\nVolunteers will assist with helmet fitting, visibility recommendations, and free front/rear bicycle light installation while supplies last.\n\nFamilies and riders of all ages are welcome."
-    },
-    {
       "slug": "battle-hill-spring-cleanup-walk-2026-06-14",
       "title": "Battle Hill Spring Cleanup Walk",
       "category": "Volunteer / Cleanup",
@@ -137,10 +122,10 @@
     },
     {
       "slug": "fisher-hill-block-party-2026-06-06",
+      "title": "Fisher Hill Block Party",
       "category": "Neighborhood Event",
       "sourceLabel": "Fisher Hill Association",
       "status": "upcoming",
-      "title": "Fisher Hill Block Party",
       "startDate": "2026-06-06",
       "startTime": "11:00",
       "endTime": "",
