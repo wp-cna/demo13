@@ -1,0 +1,127 @@
+# WPCNA content admin (Sveltia CMS, Decap-compatible).
+# Editors sign in with GitHub; saving commits to the repo, which rebuilds the site.
+backend:
+  name: github
+  repo: wp-cna/demo13
+  branch: main
+  # Deployed Sveltia auth Worker (set up once). If you name the Worker
+  # "wpcna-cms-auth" on your Cloudflare account, this URL is already correct.
+  base_url: https://wpcna-cms-auth.wpcna.workers.dev
+
+site_url: https://wp-cna.github.io/demo13/
+display_url: https://wp-cna.github.io/demo13/
+media_folder: "src/assets/img/uploads"
+public_folder: "/demo13/assets/img/uploads"
+
+collections:
+  - name: events
+    label: "Events"
+    files:
+      - name: events
+        label: "Events list"
+        file: "src/_data/events.json"
+        fields:
+          - name: events
+            label: "Events"
+            label_singular: "Event"
+            widget: list
+            summary: "{{fields.title}} - {{fields.startDate}}"
+            fields:
+              - { name: id, label: "ID (unique)", widget: string }
+              - { name: slug, label: "Slug (URL part)", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: category, label: "Category", widget: string }
+              - { name: shortSummary, label: "Short summary (card)", widget: text }
+              - { name: fullDescription, label: "Full description", widget: text }
+              - { name: startDate, label: "Start date", widget: string, hint: "YYYY-MM-DD" }
+              - { name: endDate, label: "End date", widget: string, required: false, hint: "YYYY-MM-DD" }
+              - { name: startTime, label: "Start time", widget: string, required: false, hint: "HH:MM 24h, or blank" }
+              - { name: endTime, label: "End time", widget: string, required: false }
+              - { name: locationName, label: "Location name", widget: string, required: false }
+              - { name: locationAddress, label: "Location address", widget: string, required: false }
+              - { name: image, label: "Image path", widget: string, required: false }
+              - { name: flyerPdf, label: "Flyer PDF URL", widget: string, required: false }
+              - { name: externalUrl, label: "External link", widget: string, required: false }
+              - { name: ctaLabel, label: "Button label", widget: string, required: false }
+              - { name: featured, label: "Feature on homepage?", widget: boolean, default: false }
+              - { name: status, label: "Status", widget: select, options: ["upcoming", "past"], default: "upcoming" }
+              - { name: tags, label: "Tags", widget: list, required: false }
+              - { name: organizer, label: "Organizer", widget: string, required: false }
+              - { name: sourceUrl, label: "Source URL", widget: string, required: false }
+              - { name: sourceLabel, label: "Source label", widget: string, required: false }
+
+  - name: postings
+    label: "Community Postings"
+    files:
+      - name: postings
+        label: "Postings list"
+        file: "src/_data/communityPostings.json"
+        fields:
+          - name: postings
+            label: "Postings"
+            label_singular: "Posting"
+            widget: list
+            summary: "{{fields.title}} - {{fields.startDate}}"
+            fields:
+              - { name: slug, label: "Slug (URL part)", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: category, label: "Category", widget: string }
+              - { name: sourceLabel, label: "Source / organizer", widget: string }
+              - { name: status, label: "Status", widget: select, options: ["upcoming", "past"], default: "upcoming" }
+              - { name: startDate, label: "Date", widget: string, hint: "YYYY-MM-DD" }
+              - { name: startTime, label: "Start time", widget: string, required: false }
+              - { name: endTime, label: "End time", widget: string, required: false }
+              - { name: displayTime, label: "Display time (text)", widget: string, required: false }
+              - { name: locationName, label: "Location name", widget: string, required: false }
+              - { name: locationAddress, label: "Location address", widget: string, required: false }
+              - { name: shortSummary, label: "Short summary (card)", widget: text }
+              - { name: fullDescription, label: "Full description", widget: text }
+
+  - name: agendas
+    label: "Agendas & Minutes"
+    files:
+      - name: agendas
+        label: "Agendas & minutes"
+        file: "src/_data/agendas.json"
+        fields:
+          - { name: intro, label: "Intro text", widget: text }
+          - name: current
+            label: "Current minutes"
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: date, label: "Date", widget: string, hint: "YYYY-MM-DD" }
+              - { name: label, label: "Label", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: pdf, label: "PDF URL", widget: string }
+          - name: archive
+            label: "Archived minutes"
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: date, label: "Date", widget: string }
+              - { name: label, label: "Label", widget: string }
+              - { name: title, label: "Title", widget: string }
+              - { name: pdf, label: "PDF URL", widget: string }
+
+  - name: site
+    label: "Site Text"
+    files:
+      - name: siteContent
+        label: "Site-wide text"
+        file: "src/_data/siteContent.json"
+        fields:
+          - { name: tagline, label: "Tagline", widget: string }
+          - { name: contactName, label: "Contact name", widget: string }
+          - { name: mission, label: "Mission statement", widget: text }
+          - { name: purpose, label: "Purpose", widget: text }
+          - { name: useItFor, label: "How to use the site", widget: text }
+          - { name: meetingNote, label: "Meeting note", widget: text }
+          - { name: footerNote, label: "Footer note", widget: string }
+          - name: communityChannels
+            label: "Community channels"
+            widget: list
+            summary: "{{fields.label}}"
+            fields:
+              - { name: label, label: "Label", widget: string }
+              - { name: url, label: "URL", widget: string }

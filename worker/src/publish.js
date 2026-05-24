@@ -156,19 +156,23 @@ export async function publishPosting({ env, posting }) {
     throw new Error(`GitHub read failed ${getRes.status}: ${(await getRes.text()).slice(0, 200)}`);
   }
   const meta = await getRes.json();
-  let postings;
+  let data;
   try {
-    postings = JSON.parse(b64ToUtf8(meta.content));
+    data = JSON.parse(b64ToUtf8(meta.content));
   } catch {
     throw new Error("Could not parse current communityPostings.json");
   }
-  if (!Array.isArray(postings)) throw new Error("communityPostings.json is not an array");
+  // Supports both the keyed-object shape { "postings": [...] } and a bare array.
+  const postings = Array.isArray(data) ? data : (data && Array.isArray(data.postings) ? data.postings : null);
+  if (!postings) throw new Error("communityPostings.json has an unexpected shape");
 
   if (postings.some((p) => p && p.slug === posting.slug)) {
     return { status: "duplicate", slug: posting.slug };
   }
 
-  const newContent = JSON.stringify([...postings, posting], null, 2) + "\n";
+  const nextPostings = [...postings, posting];
+  const updated = Array.isArray(data) ? nextPostings : { ...data, postings: nextPostings };
+  const newContent = JSON.stringify(updated, null, 2) + "\n";
   const putRes = await fetch(apiBase, {
     method: "PUT",
     headers: { ...ghHeaders(env), "Content-Type": "application/json" },

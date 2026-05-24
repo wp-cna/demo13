@@ -1,7 +1,7 @@
 // Community postings are stored as plain data in communityPostings.json so the
 // list is easy to edit by hand and safe for the approval Worker to append to.
 // This module loads that data and adds the derived fields the templates use.
-const rawPostings = require("./communityPostings.json");
+const rawPostings = require("./communityPostings.json").postings;
 
 function toSearchText(posting) {
   return [

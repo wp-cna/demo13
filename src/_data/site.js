@@ -1,4 +1,5 @@
 const neighborhoodStore = require("./neighborhoodStore");
+const siteContent = require("./siteContent.json");
 
 const runtimePathPrefix = process.env.SITE_PATH_PREFIX || "/";
 const canonicalPathPrefix = process.env.CANONICAL_PATH_PREFIX || process.env.SITE_PATH_PREFIX || "/demo13";
@@ -217,5 +218,8 @@ module.exports = {
       url: "https://www.cityofwhiteplains.com/Calendar.aspx"
     }
   ],
-  footerNote: "Neighborhood-centered civic hub for White Plains."
+  footerNote: "Neighborhood-centered civic hub for White Plains.",
+  // Editable site-wide text lives in siteContent.json (CMS-managed); it
+  // overrides the matching defaults above.
+  ...siteContent
 };

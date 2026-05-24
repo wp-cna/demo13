@@ -48,6 +48,9 @@ module.exports = function (eleventyConfig) {
   const outputDir = process.env.SITE_OUTPUT_DIR || "_site";
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  // Content admin (Sveltia CMS) — copy verbatim, don't run it through templating.
+  eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
+  eleventyConfig.ignores.add("src/admin/**");
 
   eleventyConfig.addFilter("absoluteUrl", (path = "", base = "") => {
     if (!path) return base;

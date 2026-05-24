@@ -1,0 +1,19 @@
+{
+  "tagline": "Neighborhood-centered civic hub for White Plains.",
+  "contactName": "Michael Dalton, President",
+  "mission": "WPCNA brings neighborhood associations together, shares civic information across the city, and helps residents stay connected to public life in White Plains.",
+  "purpose": "White Plains has neighborhood concerns, public meetings, local events, workshop materials, and city notices moving at the same time. This site keeps the most useful pieces together in one place with a neighborhood-centered lens.",
+  "useItFor": "Use it to keep up with what is coming up, open a neighborhood profile, review agendas and minutes, and find the White Plains pages residents need again and again.",
+  "meetingNote": "WPCNA usually meets on the second Tuesday of the month at 7:00 p.m. Meetings are held in person at the White Plains Board of Education building (5 Homeside Lane) or online via Zoom, depending on the agenda. Format and timing can shift month to month, so check the latest agenda before you go.",
+  "footerNote": "Neighborhood-centered civic hub for White Plains.",
+  "communityChannels": [
+    {
+      "label": "White Plains Public Library calendar",
+      "url": "https://calendar.whiteplainslibrary.org/"
+    },
+    {
+      "label": "City of White Plains calendar",
+      "url": "https://www.cityofwhiteplains.com/Calendar.aspx"
+    }
+  ]
+}

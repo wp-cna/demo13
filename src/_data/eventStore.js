@@ -1,4 +1,4 @@
-const manualEvents = require("./events.json");
+const manualEvents = require("./events.json").events;
 
 let autoEvents = [];
 
