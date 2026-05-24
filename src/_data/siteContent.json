@@ -15,5 +15,19 @@
       "label": "City of White Plains calendar",
       "url": "https://www.cityofwhiteplains.com/Calendar.aspx"
     }
-  ]
+  ],
+  "heroImage": "/assets/img/home/legacy-carousel/White-Plains.jpeg",
+  "heroImageAlt": "Golden-hour aerial view of downtown White Plains with neighborhoods, treetops, and streets stretching toward the horizon.",
+  "neighborhoodsHeroImage": "/assets/img/heroes/cna-neighborhoods-hero.png",
+  "neighborhoodsHeroImageAlt": "Aerial view across White Plains with downtown towers rising above nearby homes and tree-lined streets.",
+  "aboutImage": "/assets/img/home/legacy-carousel/Wp.pm.jpg",
+  "aboutImageAlt": "Downtown White Plains at twilight with office towers, apartment buildings, and the city skyline lit against a deep blue sky.",
+  "eventHeroImage": "/assets/img/heroes/cna-events-hero.png",
+  "eventHeroImageAlt": "Families gathered in a park for an outdoor community event with children holding large balloons.",
+  "agendasHeroImage": "/assets/img/heroes/cna-agenda-hero.jpg",
+  "agendasHeroImageAlt": "Residents seated in a public meeting room while a presenter speaks at the front.",
+  "handbookHeroImage": "/assets/img/heroes/cna-workshop-classroom.jpg",
+  "handbookHeroImageAlt": "An instructor teaching adults in a classroom during a workshop.",
+  "postingHeroImage": "/assets/img/heroes/wpcna-parade-community-posting.png",
+  "postingHeroImageAlt": "WPCNA members and neighbors holding a WPCNA banner during a White Plains parade."
 }

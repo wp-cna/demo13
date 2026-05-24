@@ -39,7 +39,7 @@ collections:
               - { name: endTime, label: "End time", widget: string, required: false }
               - { name: locationName, label: "Location name", widget: string, required: false }
               - { name: locationAddress, label: "Location address", widget: string, required: false }
-              - { name: image, label: "Image path", widget: string, required: false }
+              - { name: image, label: "Photo (upload or pick)", widget: image, required: false }
               - { name: flyerPdf, label: "Flyer PDF URL", widget: string, required: false }
               - { name: externalUrl, label: "External link", widget: string, required: false }
               - { name: ctaLabel, label: "Button label", widget: string, required: false }
@@ -125,3 +125,17 @@ collections:
             fields:
               - { name: label, label: "Label", widget: string }
               - { name: url, label: "URL", widget: string }
+          - { name: heroImage, label: "Home banner image", widget: image, required: false }
+          - { name: heroImageAlt, label: "Home banner alt text", widget: string, required: false }
+          - { name: neighborhoodsHeroImage, label: "Neighborhoods banner image", widget: image, required: false }
+          - { name: neighborhoodsHeroImageAlt, label: "Neighborhoods banner alt text", widget: string, required: false }
+          - { name: aboutImage, label: "About banner image", widget: image, required: false }
+          - { name: aboutImageAlt, label: "About banner alt text", widget: string, required: false }
+          - { name: eventHeroImage, label: "Events banner image", widget: image, required: false }
+          - { name: eventHeroImageAlt, label: "Events banner alt text", widget: string, required: false }
+          - { name: agendasHeroImage, label: "Agendas banner image", widget: image, required: false }
+          - { name: agendasHeroImageAlt, label: "Agendas banner alt text", widget: string, required: false }
+          - { name: handbookHeroImage, label: "Join the CNA banner image", widget: image, required: false }
+          - { name: handbookHeroImageAlt, label: "Join the CNA banner alt text", widget: string, required: false }
+          - { name: postingHeroImage, label: "Community Postings banner image", widget: image, required: false }
+          - { name: postingHeroImageAlt, label: "Community Postings banner alt text", widget: string, required: false }
