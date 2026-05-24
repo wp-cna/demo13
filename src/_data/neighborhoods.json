@@ -118,8 +118,8 @@
       "slug": "battle-hill",
       "name": "Battle Hill",
       "group": "West Side and Near-Downtown Neighborhoods",
-      "published": false,
-      "description": "Battle Hill is one of the city's signature historic neighborhoods: the 1776 Battle of White Plains took place largely here and on nearby Dusenbury Hill. Today it is a settled residential area on higher ground, with a strong local identity and a little more history than most parts of the city.",
+      "published": true,
+      "description": "Test description.",
       "association": {
         "name": "",
         "url": "",
