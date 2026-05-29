@@ -106,21 +106,6 @@
       "fullDescription": "All day soccer tournament to raise money for cancer research through the nonprofit \"Kick for a Kure.\" $100 donation per team for entry. Round robin will begin at 10am, and continue all day until a champion is crowned."
     },
     {
-      "slug": "test",
-      "title": "test",
-      "category": "test",
-      "sourceLabel": "test",
-      "status": "upcoming",
-      "startDate": "2026-09-01",
-      "startTime": "9 am",
-      "endTime": "4 pm",
-      "displayTime": "9a-4p",
-      "locationName": "test",
-      "locationAddress": "1 test st.",
-      "shortSummary": "testing testing",
-      "fullDescription": "this is a test"
-    },
-    {
       "slug": "fisher-hill-block-party-2026-06-06",
       "title": "Fisher Hill Block Party",
       "category": "Neighborhood Event",
