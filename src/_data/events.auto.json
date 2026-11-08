@@ -1,34 +1,5 @@
 [
   {
-    "id": "city-common-council-meeting-2026-09-08",
-    "slug": "city-common-council-meeting-2026-09-08",
-    "title": "Common Council Meeting",
-    "category": "Civic",
-    "shortSummary": "Common Council Meeting is listed on the official White Plains city calendar.",
-    "fullDescription": "Common Council Meeting is listed on the official White Plains city calendar. It is set for Common Council Chamber, 255 Main Street, 2nd Floor, White Plains NY 10601. Use the official city page for agendas, updates, and any location changes.",
-    "startDate": "2026-09-08",
-    "endDate": "2026-09-08",
-    "startTime": "19:00",
-    "endTime": "21:00",
-    "locationName": "Common Council Chamber",
-    "locationAddress": "255 Main Street, 2nd Floor, White Plains NY 10601",
-    "image": "/assets/img/events/civic.svg",
-    "flyerPdf": null,
-    "externalUrl": "https://www.cityofwhiteplains.com/Calendar.aspx?EID=3608&month=9&year=2026&day=8&calType=0",
-    "ctaLabel": "Open city page",
-    "featured": false,
-    "status": "past",
-    "tags": [
-      "city calendar",
-      "public meeting",
-      "city hall"
-    ],
-    "organizer": "City of White Plains",
-    "sourceUrl": "https://www.cityofwhiteplains.com/Calendar.aspx?EID=3608&month=9&year=2026&day=8&calType=0",
-    "sourceLabel": "City calendar",
-    "importSource": "city"
-  },
-  {
     "id": "city-court-street-market-2026-09-09",
     "slug": "city-court-street-market-2026-09-09",
     "title": "Court Street Market",
@@ -4967,6 +4938,36 @@
     "sourceUrl": "https://www.cityofwhiteplains.com/Calendar.aspx?EID=4148&month=12&year=2026&day=21&calType=0",
     "sourceLabel": "City calendar",
     "importSource": "city"
+  },
+  {
+    "id": "library-graphic-novel-chat-and-bingo-snowlands-a-blood-moon-2026-12-22",
+    "slug": "library-graphic-novel-chat-and-bingo-snowlands-a-blood-moon-2026-12-22",
+    "title": "Graphic Novel Chat & BINGO: Snowlands: A Blood Moon",
+    "category": "Learning",
+    "shortSummary": "Join us for some fun by talking about Snowlands: A Blood Moon by Morr Meroz!",
+    "fullDescription": "Join us for some fun by talking about Snowlands: A Blood Moon by Morr Meroz! The first 4 students to register will receive a free copy of the graphic novel. Upon registration, please come to the Trove reference desk to pick up your free copy of the graphic novel. Other participants can have a copy placed on hold for them. For best discussion results, please make sure to read the graphic novel before coming to the program. We will also be playing a BINGO game based on Snowlands: A Blood Moon and snacking on treats. About Snowlands: A Blood Moon : Feba, an orphaned wolf cub, is believed to be cursed. Her rare white fur is said to be a bad omen. When a mysterious creature starts killing members of Feba's pack one by one, all eyes fall on her. She has no choice but to run away, forced to roam the perilous Snowlands all on her own ... Until she meets Usha, a fiercely independent leopard, and Batu, a bumbling wildcat, each with their own secrets and reasons for wandering the Snowlands. Together, they form an unlikely trio, bound by fate. Check the library page for registration, tickets, and any schedule updates.",
+    "startDate": "2026-12-22",
+    "endDate": "2026-12-22",
+    "startTime": "17:00",
+    "endTime": "18:00",
+    "locationName": "White Plains Public Library",
+    "locationAddress": "100 Martine Avenue, White Plains, NY 10601",
+    "image": "/assets/img/events/learning.svg",
+    "flyerPdf": null,
+    "externalUrl": "https://calendar.whiteplainslibrary.org/event/17255176",
+    "ctaLabel": "Open library page",
+    "featured": false,
+    "status": "upcoming",
+    "tags": [
+      "books and authors",
+      "elementary school (grades 1 - 6)",
+      "children",
+      "library"
+    ],
+    "organizer": "White Plains Public Library",
+    "sourceUrl": "https://calendar.whiteplainslibrary.org/event/17255176",
+    "sourceLabel": "Library calendar",
+    "importSource": "library"
   },
   {
     "id": "city-new-year-s-eve-family-spectacular-2026-12-31",
