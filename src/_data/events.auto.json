@@ -1,32 +1,5 @@
 [
   {
-    "id": "city-court-street-market-2026-09-09",
-    "slug": "city-court-street-market-2026-09-09",
-    "title": "Court Street Market",
-    "category": "Food & Downtown",
-    "shortSummary": "Court Street Market is listed on the official White Plains city calendar.",
-    "fullDescription": "Court Street Market is listed on the official White Plains city calendar. It is set for Court Street Market, Variety of vendors every Wednesday from 8:30am until 3:30pm. Use the official city page for agendas, updates, and any location changes.",
-    "startDate": "2026-09-09",
-    "endDate": "2026-09-09",
-    "startTime": "08:30",
-    "endTime": "15:00",
-    "locationName": "Court Street Market",
-    "locationAddress": "Variety of vendors every Wednesday from 8:30am until 3:30pm",
-    "image": "/assets/img/events/food.svg",
-    "flyerPdf": null,
-    "externalUrl": "https://www.cityofwhiteplains.com/Calendar.aspx?EID=4682&month=9&year=2026&day=9&calType=0",
-    "ctaLabel": "Open city page",
-    "featured": false,
-    "status": "past",
-    "tags": [
-      "city calendar"
-    ],
-    "organizer": "City of White Plains",
-    "sourceUrl": "https://www.cityofwhiteplains.com/Calendar.aspx?EID=4682&month=9&year=2026&day=9&calType=0",
-    "sourceLabel": "City calendar",
-    "importSource": "city"
-  },
-  {
     "id": "city-9-11-day-of-remembrance-ceremony-2026-09-11",
     "slug": "city-9-11-day-of-remembrance-ceremony-2026-09-11",
     "title": "9/11 Day of Remembrance Ceremony",
